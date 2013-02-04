@@ -1,14 +1,13 @@
 define([
-	'postal',
-	'lib/sandbox'
+	'postal'
 ],
 function(
-	postal,
-	Sandbox
+	postal
 ){  
     "use strict";
     
-	var Pumpkin = {};
+	var Pumpkin = {},
+		Sandbox = {};
 
 	Pumpkin.version = "0.01";
 
@@ -21,11 +20,21 @@ function(
 		this.channel = postal.channel('app');
 		this.sandbox = Sandbox;
 
-	this._startDate = new Date();   		
+		this._startDate = new Date();   		
 
 		// bind to incoming messages on the app bus
 		this._bindToTopics(this._coreModuleTopics);
 		this._bindToTopics(this.topics);
+
+		// cycle through modules and get the instantiated
+		for(var module in this.modules){
+			try{
+				this.modules[module] = new this.modules[module]();
+			}catch(e){
+				throw 'Module "'+module+'" did not instance properly';
+			}
+		}
+
 	}
 
    	
@@ -35,9 +44,9 @@ function(
 
    			var toBind = {};
 
-   			if (specifc_topics && typeof(specifc_topics) === "object") {
-   				toBind = specifc_topics;
-   			} else if(specifc_topics) {
+   			if (specific_topics && typeof(specific_topics) === "object") {
+   				toBind = specific_topics;
+   			} else if(specific_topics) {
    				// this._logError(da);
    				throw "topics passed to bind not correct";
    			}
@@ -98,7 +107,7 @@ function(
    		},
    		start: function(){
    			// this should be overriden with custom startup
-   			
+   			throw 'oops should be overriden';
    		},
    		modules: {
    			// app modules here
@@ -111,7 +120,8 @@ function(
    	});
 
 	var Module = Pumpkin.Module = function(options){
-		this.channel = postal.channel('app')
+		this.channel = postal.channel('app');
+		this.sandbox = Sandbox;
 	}
 
 	_.extend(Module.prototype,{
