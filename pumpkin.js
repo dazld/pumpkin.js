@@ -8,25 +8,25 @@ function(
 ){  
     "use strict";
     
-    var Pumpkin = {};
+	var Pumpkin = {};
 
-    Pumpkin.version = "0.01";
-    
-   	var App = Pumpkin.App = function(options){
-   		// listen on app channel
+	Pumpkin.version = "0.01";
 
-   		var options = options || {};
-   		var app_bus = options.app_bus || 'app';
+	var App = Pumpkin.App = function(options){
+		// listen on app channel
 
-   		this.channel = postal.channel(app_bus);
-   		this.sandbox = Sandbox;
+		var options = options || {};
+		
 
-		this._startDate = new Date();   		
+		this.channel = postal.channel('app');
+		this.sandbox = Sandbox;
 
-   		// bind to incoming messages on the app bus
-   		this._bindToTopics(this._coreModuleTopics);
-   		this._bindToTopics(this.topics);
-   	}
+	this._startDate = new Date();   		
+
+		// bind to incoming messages on the app bus
+		this._bindToTopics(this._coreModuleTopics);
+		this._bindToTopics(this.topics);
+	}
 
    	
    	_.extend(App.prototype,{
@@ -111,7 +111,7 @@ function(
    	});
 
 	var Module = Pumpkin.Module = function(options){
-
+		this.channel = postal.channel('app')
 	}
 
 	_.extend(Module.prototype,{
