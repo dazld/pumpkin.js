@@ -1,5 +1,5 @@
 define([
-  	'postal',
+	'postal',
 	'lib/sandbox'
 ],
 function(
@@ -8,7 +8,7 @@ function(
 ){  
     "use strict";
     
-    var Pumpkin;
+    var Pumpkin = {};
 
     Pumpkin.version = "0.01";
     
@@ -25,15 +25,15 @@ function(
 
    		// bind to incoming messages on the app bus
    		this._bindToTopics(this._coreModuleTopics);
-   		this._bindToTopics();
+   		this._bindToTopics(this.topics);
    	}
 
    	
    	_.extend(App.prototype,{
    		
-   		_bindToTopics: function(specifc_topics){
+   		_bindToTopics: function(specific_topics){
 
-   			var toBind = this.topics;
+   			var toBind = {};
 
    			if (specifc_topics && typeof(specifc_topics) === "object") {
    				toBind = specifc_topics;
