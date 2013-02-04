@@ -7,12 +7,13 @@ function(
     "use strict";
     
 	var Pumpkin = {},
-		Sandbox = {};
+		Sandbox = {}; // dirty hacks <3
 
 	Pumpkin.version = "0.01";
 
 	var App = Pumpkin.App = function(options){
 		// listen on app channel
+
 
 		var options = options || {};
 		
@@ -22,9 +23,13 @@ function(
 
 		this._startDate = new Date();   		
 
+
 		// bind to incoming messages on the app bus
 		this._bindToTopics(this._coreModuleTopics);
 		this._bindToTopics(this.topics);
+
+		
+		this.channel.publish('app.instanced');
 
 		// cycle through modules and get the instantiated
 		for(var module in this.modules){
@@ -34,6 +39,8 @@ function(
 				throw 'Module "'+module+'" did not instance properly';
 			}
 		}
+
+
 
 	}
 
@@ -119,12 +126,19 @@ function(
    		}
    	});
 
+	var CoreExtension = Pumpkin.CoreExtension = function(){
+
+	}
+
 	var Module = Pumpkin.Module = function(options){
 		this.channel = postal.channel('app');
 		this.sandbox = Sandbox;
+
+		this.channel.publish('module.instanced',{name:this._name});
 	}
 
 	_.extend(Module.prototype,{
+		_name: 'KickMe',
 		init: function(){},
 		start: function(){},
 		render: function(){},
@@ -171,7 +185,7 @@ function(
   	};
 
 	// Set up inheritance for the model, collection, router, view and history.
-	App.extend = Module.extend = extend;
+	App.extend = Module.extend = CoreExtension.extend = extend;
 
     
     return Pumpkin; 
