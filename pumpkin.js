@@ -1,5 +1,5 @@
 define([
-  'postal',
+  	'postal',
 	'lib/sandbox'
 ],
 function(
