@@ -51,7 +51,7 @@ function(
 				try{
 					this.modules[module] = new this.modules[module]();
 				}catch(e){
-					throw 'Module "'+module+'" did not instance properly';
+					throw 'Module "'+module+'" did not instance properly - '+e;
 				}
 			}
 		},
