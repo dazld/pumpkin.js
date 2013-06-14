@@ -1,0 +1,51 @@
+{
+  "name": "pumpkin",
+  "description": "Work in progress framework ",
+  "version": "0.0.1",
+  "homepage": "https://github.com/dazld/pumpkin.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:dazld/pumpkin.js.git"
+  },
+  "author": {
+    "name": "Dan Peddle",
+    "url": "http://flarework.com"
+  },
+  "contributors": [
+    {
+      "name": "Dan Peddle",
+      "email": "dan@flarework.com",
+      "url": "http://flarework.com"
+    }
+  ],
+  "keywords": [
+    "messaging",
+    "framework",
+    "modules"
+  ],
+  "bugs": {
+    "url": "https://github.com/dazld/pumpkin.js/issues",
+    "email": "PleaseJustUseTheIssuesPage@github.com"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "main": "lib/pumpkin.js",
+  "engines": {
+    "node": ">=0.4.0"
+  },
+  "dependencies": {
+    "postal": ">=0.8.4",
+    "backbone": ">=1.0.0",
+    "underscore": ">=1.4.4"
+  },
+  "bundleDependencies": [],
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "BSD",
+  "readme": "ERROR: No README data found!",
+  "_id": "pumpkin@0.0.1",
+  "_from": "pumpkin@"
+}
