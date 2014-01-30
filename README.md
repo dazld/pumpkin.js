@@ -1,6 +1,8 @@
 Pumpkin.js
 ==========
 
+(this is not being maintained, was more of a set of ideas that didn't really take flight)
+
 (emphasis) Work in progress (emphasis) client side single-page JS framework, that tries to tie together a number of 
 'standard' components. Learning exercise, basically.
 
